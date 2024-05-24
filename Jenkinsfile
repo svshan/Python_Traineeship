@@ -2,7 +2,7 @@
     agent any
 
     environment {
-    BITBUCKET_TOKEN = credentials('8080')
+        WORKSPACE = "${env.WORKSPACE}"
     }
 
     triggers {
@@ -51,7 +51,7 @@
   jdk: '',
   properties: [ ],
   reportBuildPolicy: 'ALWAYS',
-  results: [ [ path: '/var/jenkins_home/workspace/test_job/allure-results' ] ]
+  results: [ [ path: '${env.WORKSPACE}/allure-results' ] ]
   ])
   }
   }
