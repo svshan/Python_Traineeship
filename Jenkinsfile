@@ -1,10 +1,6 @@
 pipeline {
   agent any
 
-  environment {
-    WORKSPACE = "${env.WORKSPACE}"
-  }
-
   triggers {
     cron('H/10 * * * *')
   }
@@ -13,7 +9,7 @@ pipeline {
     stage('Clone repository') {
       steps {
         script {
-          git credentialsId: '', url: 'https://github.com/svshan/Python_Traineeship.git' , branch: 'main'
+          git credentialsId: '', url: 'https://github.com/svshan/Python_Traineeship.git', branch: 'main'
         }
       }
     }
@@ -21,8 +17,7 @@ pipeline {
     stage('Install requirements') {
       steps {
         script {
-            sh 'python3 -m venv venv'
-            sh '. venv/bin/activate && pip install -r requirements.txt'
+          sh 'pip install -r requirements.txt'
         }
       }
     }
