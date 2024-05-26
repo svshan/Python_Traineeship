@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      image 'python:3.11'
-      args '-u root'
-    }
-  }
+  agent any
 
   triggers {
     cron('H/10 * * * *')
