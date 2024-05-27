@@ -14,10 +14,12 @@ pipeline {
       }
     }
 
-    stage('Install requirements') {
+    stage('Setup Python Environment') {
       steps {
         script {
-          sh 'pip install -r requirements.txt'
+          sh 'python3 -m venv venv'
+          sh './venv/bin/pip install --upgrade pip'
+          sh './venv/bin/pip install -r requirements.txt'
         }
       }
     }
@@ -26,7 +28,7 @@ pipeline {
       steps {
         catchError {
           script {
-            sh 'pytest *.py'
+            sh './venv/bin/pytest *.py'
           }
         }
       }
